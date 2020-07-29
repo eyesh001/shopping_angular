@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "staging": "angular-simplecommerce"
+  },
+  "targets": {
+    "angular-simplecommerce": {
+      "hosting": {
+        "shops-angular": [
+          "angular-simplecommerce"
+        ]
+      }
+    }
+  }
+}

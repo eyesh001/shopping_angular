@@ -5,10 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductModule } from './Product/product.module';
 import { CategoryModule } from './Category/category.module';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule  } from '@angular/fire/database';
+import { AngularFireModule  } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { CommonsModule } from './Common/commons.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     /* Angular Modules */
@@ -17,7 +23,13 @@ import { CategoryModule } from './Category/category.module';
     FormsModule,
     /* App Modules */
     ProductModule,
-    CategoryModule
+    CategoryModule,
+    CommonsModule,
+    /* firebase */
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
