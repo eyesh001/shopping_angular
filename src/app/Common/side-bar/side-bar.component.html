@@ -1,42 +1,24 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">
-                <span data-feather="home"></span>
-                Dashboard <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <span data-feather="file"></span>
-                Orders
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <span data-feather="shopping-cart"></span>
-                Products
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <span data-feather="users"></span>
-                Customers
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <span data-feather="bar-chart-2"></span>
-                Reports
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                <span data-feather="layers"></span>
-                Integrations
-                </a>
-            </li>
-            </ul>
-    </div>
+<nav class="sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/product-list" routerLinkActive="active">
+        <i class="fa fa-list-ul"></i> 상품목록
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">
+        <i class="fa fa-hashtag"></i> 장바구니
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">
+        <i class="fa fa-hashtag"></i> 상품관리
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/category-list" routerLinkActive="active">
+        <i class="fa fa-hashtag"></i> 카테고리관리
+      </a>
+    </li>
+  </ul>
 </nav>

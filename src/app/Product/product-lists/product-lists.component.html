@@ -1,2 +1,15 @@
-<p>product-lists works!</p>
-<button class="btn btn-warning ml-2" (click)="doGoogleLogin()">{{ loginTest }}</button> 
+<div class="row">
+    <div *ngFor="let prodcutList of prodcutLists">
+        <div class="col-lg-4">
+            <input type="checkbox" aria-label="Checkbox for following text input">
+            <div *ngIf="prodcutList.img != null">
+                <img class="imgs" [src]="prodcutList.img">
+            </div>
+            <!-- TODO: ngIf, else -->
+            <div *ngIf="prodcutList.img == null">
+                <img class="imgs" src="https://picsum.photos/200/300/?blur">
+            </div>
+            <h6>{{ prodcutList.name }}</h6>
+        </div>
+    </div>
+</div>

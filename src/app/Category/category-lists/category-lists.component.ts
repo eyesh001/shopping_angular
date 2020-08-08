@@ -11,5 +11,4 @@ export class CategoryListsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
