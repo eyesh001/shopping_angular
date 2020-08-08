@@ -1,4 +1,27 @@
-.row .col-lg-4 .imgs {
-    width: 140px;
-    height: 140px;
+.buttons {
+    float: right;
+}
+
+.product_list {
+    position: absolute;
+    width: 400px;
+    margin-right: 40px;
+}
+
+.product_list :hover{
+    cursor: pointer;
+}
+
+.product_list .checks {
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.product_list .imgs {
+    width: 50px;
+    height: 50px;
+}
+
+.product_list .names {
+    padding-top: 3px;
 }
