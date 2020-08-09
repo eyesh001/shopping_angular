@@ -1,0 +1,27 @@
+<div class="row">
+    <p>장바구니</p>
+    <img src='/assets/img/shopping_cart.svg'>
+</div>
+<table class="table"width="600px" *ngIf="cartInLists.length > 0"> 
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">상품명</th>
+            <th scope="col">가격</th>
+            <th scope="col">수량</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of cartInLists; let i = index">
+            <td scope="row">{{ i + 1 }}
+            </td>
+            <td>{{ product.name }}
+            </td>
+            <td> 가격
+            </td>
+            <td> 수량
+            </td>
+        </tr>
+    </tbody>
+</table>
+

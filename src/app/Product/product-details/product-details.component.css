@@ -1,0 +1,10 @@
+.modal-background {
+    position: absolute;
+    background-color: white;
+    width: 300px;
+}
+
+.modal-background .modal-body .imgs {
+    width: 100px;
+    height: 100px;
+}

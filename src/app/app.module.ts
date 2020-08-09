@@ -11,6 +11,7 @@ import { AngularFireModule  } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { CommonsModule } from './Common/commons.module';
+import { PurchaseModule } from './Purchase/purchase.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CommonsModule } from './Common/commons.module';
     ProductModule,
     CategoryModule,
     CommonsModule,
+    PurchaseModule,
     /* firebase */
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,

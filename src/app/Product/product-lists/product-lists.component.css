@@ -1,5 +1,12 @@
 .buttons {
     float: right;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 600px;
+}
+
+.buttons .allCheck {
+    margin-right: 5px;
 }
 
 .product_list {

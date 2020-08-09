@@ -4,10 +4,11 @@ import { ProductListsComponent } from './Product/product-lists/product-lists.com
 import { PageNotFoundComponent } from './Common/page-not-found/page-not-found.component';
 import { CategoryListsComponent } from './Category/category-lists/category-lists.component';
 import { ProductManagementComponent } from './Product/product-management/product-management.component';
+import { CartComponent } from './Purchase/cart/cart.component';
 
 
 const routes: Routes = [
-  { path: 'product-list', children:[
+  { path: 'product-list', children: [
       {
         path: '', pathMatch: 'full', component: ProductListsComponent
       },
@@ -17,6 +18,7 @@ const routes: Routes = [
     ]
   },
   { path: 'category-list', component: CategoryListsComponent },
+  { path: 'cart', component: CartComponent },
   { path: '', component: ProductListsComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

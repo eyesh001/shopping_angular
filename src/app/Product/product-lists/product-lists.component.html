@@ -1,20 +1,16 @@
 <form id="Myform" name="Myform" method="post">
     <div class="row buttons">
         <button type="button" class="btn btn-outline-primary btn-sm allCheck">전체선택/취소</button>
-        <button type="button" class="btn btn-outline-primary btn-sm allReset">장바구니</button>
+        <button type="button" class="btn btn-outline-primary btn-sm allReset">장바구니에 넣기</button>
     </div>
     <table width="600px"> 
         <tr>
             <td *ngFor="let productList of productLists">
                 <table class="product_list" (click)="productDetailOpen(productList)">
                     <tr>
-                        <td valign="top" *ngIf="productList.img != null">
+                        <td valign="top">
                             <input type="checkbox" class="checks"/>
                             <img class="imgs" [src]="productList.img">
-                        </td>
-                        <td valign="top" *ngIf="productList.img == null">
-                            <input type="checkbox" class="checks"/>                            
-                            <img class="imgs" src="https://picsum.photos/200/300/?blur">
                         </td>
                     </tr>
                     <tr>
@@ -27,3 +23,7 @@
         </tr>
     </table>
 </form>
+
+<div *ngIf="detailOpen">
+    <sh-product-details [productList]="productList" (detailClose)="detailClose()"></sh-product-details>
+</div>

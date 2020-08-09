@@ -1,1 +1,18 @@
-<p>product-details works!</p>
+<div class="modal-background">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{ productList.name }}</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="clickButton('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="imgs" [src]="productList.img">
+    <p>All information associated to this user profile will be permanently deleted.
+    <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="clickButton('close')">Cancel</button>
+    <button type="button" class="btn btn-outline-warning" (click)="clickButton('gotoCart')">Cart</button>
+  </div>
+</div>
