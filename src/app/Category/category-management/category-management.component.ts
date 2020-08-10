@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionMode } from 'src/app/Shared/shared-util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sh-category-management',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  categoryChange(mode: ActionMode){
+    this.router.navigate(['/category-manage/detail/0'], { queryParams: { action: mode } });
+  }
 }

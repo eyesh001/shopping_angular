@@ -2,22 +2,35 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductListsComponent } from './Product/product-lists/product-lists.component';
 import { PageNotFoundComponent } from './Common/page-not-found/page-not-found.component';
-import { CategoryListsComponent } from './Category/category-lists/category-lists.component';
 import { ProductManagementComponent } from './Product/product-management/product-management.component';
 import { CartComponent } from './Purchase/cart/cart.component';
+import { CategoryManagementComponent } from './Category/category-management/category-management.component';
+import { CategoryMngDetailComponent } from './Category/category-management/category-mng-detail/category-mng-detail.component';
+import { CategoryMngDetailService } from './Category/category-management/category-mng-detail/category-mng-detail.service';
+import { ProductMngDetailService } from './Product/product-management/product-mng-detail/product-mng-detail.service';
+import { ProductMngDetailComponent } from './Product/product-management/product-mng-detail/product-mng-detail.component';
 
-
+// { path: 'product-list', children: [
+//   {
+//     path: '', pathMatch: 'full', component: ProductListsComponent
+//   },
+//   {
+//     path: 'manage', pathMatch: 'full', component: ProductManagementComponent
+//   }
+// ]
+// },
 const routes: Routes = [
-  { path: 'product-list', children: [
-      {
-        path: '', pathMatch: 'full', component: ProductListsComponent
-      },
-      {
-        path: 'product/:no', pathMatch: 'full', component: ProductManagementComponent
-      }
-    ]
+  { path: 'product-list', pathMatch: 'full', component: ProductListsComponent},
+  { path: 'product-manage', children: [
+    {path: '', pathMatch: 'full', component: ProductManagementComponent},
+    {path: 'detail/:no', resolve: { product: ProductMngDetailService }, component: ProductMngDetailComponent}
+  ]
   },
-  { path: 'category-list', component: CategoryListsComponent },
+  { path: 'category-manage', children: [
+    {path: '', pathMatch: 'full', component: CategoryManagementComponent},
+    {path: 'detail/:no', resolve: { category: CategoryMngDetailService }, component: CategoryMngDetailComponent}
+  ]
+  },
   { path: 'cart', component: CartComponent },
   { path: '', component: ProductListsComponent },
   { path: '**', component: PageNotFoundComponent }

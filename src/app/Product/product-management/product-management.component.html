@@ -1,5 +1,43 @@
 <h4>상품 등록/수정/삭제</h4>
-<div class="input-group">
-  <span class="input-group-addon">상품명</span>
-  <input type="text" class="form-control"/>
-</div>
+
+<button type="button" class="btn btn-outline-primary btn-sm" (click)="productChange('create')">카테고리 등록</button>
+
+<table class="table" width="600px"> 
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">카테고리</th>
+          <th scope="col">상품명</th>
+          <th scope="col">수량</th>
+          <th scope="col">가격</th>
+          <th scope="col">사진</th>
+          <th scope="col">설명</th>
+          <th scope="col">등록일</th>
+          <th scope="col">등록일</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="productChange('edit')">수정</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="productChange('delete')">삭제</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
