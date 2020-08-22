@@ -1,0 +1,41 @@
+{
+    "kr": {
+        "categoryManagment" : {
+            "createCategory": "카테고리 등록",
+            "categoryName":"카테고리명",
+            "isUse":"사용여부",
+            "detail":"설명",
+            "edit":"수정",
+            "delete":"삭제"
+            },
+        "categoryMngDetail" : {
+            "no": "번호",
+            "categoryName":"카테고리명",
+            "categoryDetail":"카테고리상세설명",
+            "isUse":"사용여부",
+            "Use":"사용",
+            "noUse":"사용 안 함",
+            "created":"생성일",
+            "edited":"수정일",
+            "save":"저장",
+            "init":"초기화",
+            "back":"돌아가기"
+            },   
+        "sideBar" : {
+            "cart": "장바구니",
+            "productList":"상품목록",
+            "categoryList":"카테고리목록"
+            },
+        "productManagement" : {
+            "category": "카테고리",
+            "productName":"상품명",
+            "size":"수량",
+            "price": "가격",
+            "picture":"사진",
+            "detail":"설명",
+            "created":"등록일",
+            "edit":"수정",
+            "delete":"삭제"
+            }
+        }
+}

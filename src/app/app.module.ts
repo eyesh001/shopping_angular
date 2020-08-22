@@ -1,17 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { CommonsModule } from './Common/commons.module';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { ProductModule } from './Product/product.module';
 import { CategoryModule } from './Category/category.module';
+import { PurchaseModule } from './Purchase/purchase.module';
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule  } from '@angular/fire/database';
 import { AngularFireModule  } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { CommonsModule } from './Common/commons.module';
-import { PurchaseModule } from './Purchase/purchase.module';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -22,6 +32,12 @@ import { PurchaseModule } from './Purchase/purchase.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: { provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [HttpClient] }
+     }),
     /* App Modules */
     ProductModule,
     CategoryModule,
