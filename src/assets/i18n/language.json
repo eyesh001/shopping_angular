@@ -10,8 +10,8 @@
             },
         "categoryMngDetail" : {
             "no": "번호",
-            "categoryName":"카테고리명",
-            "categoryDetail":"카테고리상세설명",
+            "category1":"카테고리1",
+            "category2":"카테고리2",
             "isUse":"사용여부",
             "Use":"사용",
             "noUse":"사용 안 함",
