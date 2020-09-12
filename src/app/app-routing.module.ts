@@ -9,6 +9,7 @@ import { CategoryMngDetailComponent } from './Category/category-management/categ
 import { CategoryMngDetailService } from './Category/category-management/category-mng-detail/category-mng-detail.service';
 import { ProductMngDetailService } from './Product/product-management/product-mng-detail/product-mng-detail.service';
 import { ProductMngDetailComponent } from './Product/product-management/product-mng-detail/product-mng-detail.component';
+import { CategoryListResolverService } from './Category/category-management/category-list-resolver.service';
 
 // { path: 'product-list', children: [
 //   {
@@ -27,7 +28,7 @@ const routes: Routes = [
   ]
   },
   { path: 'category-manage', children: [
-    {path: '', pathMatch: 'full', component: CategoryManagementComponent},
+    {path: '', pathMatch: 'full', resolve: { category: CategoryListResolverService }, component: CategoryManagementComponent},
     {path: 'detail/:no', resolve: { category: CategoryMngDetailService }, component: CategoryMngDetailComponent}
   ]
   },

@@ -3,6 +3,7 @@ import { Domain } from './shared-util';
 import { NoCounterService } from './no-counter.service';
 import { switchMap } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Category } from '../Category/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +18,16 @@ export class DataStoreService {
     return this.counter.incAndGet(domain).pipe(switchMap(no => this.findObject$(domain, no).set(modelCreationFn(no))));
   }
 
+  count(domain: Domain){
+    return this.counter.get(domain);
+  }
+
   update(){
 
   }
 
-  find(){
-
-  }
-
-  findAll(){
-    
+  getList<T>(domain: Domain){
+    return this.db.list<T>(`/${domain}`);
   }
 
   delete(){

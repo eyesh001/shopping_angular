@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedUtil, ActionMode } from 'src/app/Shared/shared-util';
 import { Category } from '../../category.model';
 import { DataStoreService } from 'src/app/Shared/data-store.service';
+import { ActivatedRoute } from '@angular/router';
+import { filter, tap, switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'sh-category-mng-detail',
@@ -14,7 +16,9 @@ export class CategoryMngDetailComponent implements OnInit {
   category2IsUse = false;
   actionMode: ActionMode;
 
-  constructor(private fb: FormBuilder, private database: DataStoreService) {
+  constructor(private fb: FormBuilder,
+              private database: DataStoreService,
+              private route: ActivatedRoute) {
     this.initform();
    }
 
@@ -29,6 +33,7 @@ export class CategoryMngDetailComponent implements OnInit {
     });
   }
 
+  // TODO: test は後で削除。
   keyupHappenTest(value) {
     if ( value.length > 0 ) {
       this.category2IsUse = true;
@@ -38,7 +43,6 @@ export class CategoryMngDetailComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.categoryForm.value);
     const category: Category = this.categoryForm.value;
     if (this.actionMode === 'create') {
       const categoryFn = (no) => {
@@ -65,6 +69,15 @@ export class CategoryMngDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.actionMode = 'create';
+    this.route.queryParams.pipe(
+      filter(q => q['action'] !== undefined)
+    , switchMap(q => this.route.data)
+    , filter((data: { category: Category }) => data.category !== null)
+    , map((data: { category: Category }) => data.category)
+    ).subscribe(cat =>
+      // console.log(cat)
+      this.categoryForm.patchValue(cat))
+      // TODO: what is 'read'
+      // this.actionMode === 'read' ? this.resetForm(cat) : this.categoryForm.patchValue(cat)
   }
 }
