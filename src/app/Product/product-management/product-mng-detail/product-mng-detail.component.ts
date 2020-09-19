@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SharedUtil } from 'src/app/Shared/shared-util';
+import { SharedUtil, ActionMode } from 'src/app/Shared/shared-util';
+import { Product } from '../../product.model';
+import { DataStoreService } from 'src/app/Shared/data-store.service';
+import { Router } from '@angular/router';
+import { PROD_LIST_PAGE_SIZE } from '../../products.tokens';
 
 @Component({
   selector: 'sh-product-mng-detail',
@@ -9,8 +13,13 @@ import { SharedUtil } from 'src/app/Shared/shared-util';
 })
 export class ProductMngDetailComponent implements OnInit {
   productForm: FormGroup;
+  actionMode: ActionMode;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+             private fb: FormBuilder,
+             private database: DataStoreService,
+             @Inject(PROD_LIST_PAGE_SIZE) pageSize: number,
+             private router: Router) {
     this.initform();
   }
 
@@ -30,6 +39,53 @@ export class ProductMngDetailComponent implements OnInit {
     });
   }
 
+  // private _setActionMode(q) {
+  //   this.actionMode = q['action'];
+  // }
+
   ngOnInit() {
+  }
+
+  submit(){
+    const product: Product = this.productForm.value;
+    this.actionMode = 'create';
+    if ( this.actionMode === 'create' ) {
+      const productFn = (no) => {
+        product.no = no;
+        return product;
+      };
+      this.database.create('product', productFn).subscribe(this._onSuccess(), this._onError());
+      return;
+    }
+  }
+
+  private _onSuccess() {
+    // TODO: popup message
+    return () => {
+      console.log('success');
+      this.redirectToCategoryList();
+    };
+  }
+
+  private redirectToCategoryList() {
+    this.router.navigate(['product-list']);
+  }
+
+  private _onError() {
+    // TODO: popup message
+    return () => {
+      console.log('error');
+    };
+  }
+
+  private _setActionMode(q) {
+    this.actionMode = q['action'];
+    switch (this.actionMode) {
+      case 'create':
+        break;
+      case 'edit':
+      default:
+        break;
+    }
   }
 }

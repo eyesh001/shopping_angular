@@ -26,8 +26,16 @@ export class DataStoreService {
 
   }
 
+  // TODO: CHECK snapshotChanges은 Observable 형태로 변환시키는 역할?
   getList<T>(domain: Domain){
-    return this.db.list<T>(`/${domain}`);
+    console.log(this.db.list<T>(`/${domain}`).valueChanges());
+    return this.db.list<T>(`/${domain}`).snapshotChanges();
+    // return this.db.list<T>(`/${domain}`, ref => ref.orderByChild('no')).snapshotChanges();
+  }
+
+  findList$ByPage<T>(domain: Domain, pageNo, pageSize, totalCnt) {
+    const offset = totalCnt - pageSize * (pageNo - 1);
+    return this.db.list<T>(`/${domain}`, ref => ref.orderByChild('no').endAt(offset).limitToLast(pageSize)).snapshotChanges();
   }
 
   delete(){

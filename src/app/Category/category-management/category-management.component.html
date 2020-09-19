@@ -4,24 +4,39 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">카테고리명</th>
-            <th scope="col">사용여부</th>
+            <th scope="col">카테고리1/th>
+            <th scope="col">카테고리2</th>
             <th scope="col"></th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="categoryChange('edit')">수정</button>
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="categoryChange('delete')">삭제</button>
-            </td>
-        </tr>
-    </tbody>
+
+    <ng-template
+    *ngIf="categories.length > 0;then categoriesExist; else categoriesNotExist">
+    </ng-template>
+    
+    <ng-template #categoriesExist>
+        <tbody>
+            <tr *ngFor="let category of categories">
+                <td>{{category.no}}
+                </td>
+                <td>{{category.name1}}
+                </td>
+                <td>{{category.name2}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="categoryChange('edit', category.no)">수정</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="categoryChange('delete', category.no)">삭제</button>
+                </td>
+            </tr>
+        </tbody>
+    </ng-template>
+
+    <ng-template #categoriesNotExist>
+        <tbody *ngIf="categories.length == 0">
+            <tr>
+                There is no data uploaded.
+            </tr>
+        </tbody>
+    </ng-template>
   </table>
   

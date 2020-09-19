@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActionMode } from 'src/app/Shared/shared-util';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataStoreService } from 'src/app/Shared/data-store.service';
 import { Categories } from '../category.model';
+import { CAT_LIST_PAGE_SIZE } from '../category.tokens';
 
 @Component({
   selector: 'sh-category-management',
@@ -13,25 +14,26 @@ export class CategoryManagementComponent implements OnInit {
 
   totalItemCnt;
   categories: Categories;
+  pageSize: number;
 
   constructor(private router: Router,
               private database: DataStoreService,
-              private route: ActivatedRoute) { }
+              @Inject(CAT_LIST_PAGE_SIZE) pageSize: number,
+              private route: ActivatedRoute) {
+                this.pageSize = pageSize;
+              }
 
-  // TODO: type of cnt is now unknown (should be any..?)
   ngOnInit() {
     this.database.count('category').subscribe(cnt => this.totalItemCnt = cnt);
     this.fetchResolvedDate();
   }
 
-  categoryChange(mode: ActionMode) {
-    this.router.navigate(['/category-manage/detail/1'], { queryParams: { action: mode } });
+  categoryChange(mode: ActionMode, no: number) {
+    this.router.navigate(['/category-manage/detail/' + no], { queryParams: { action: mode } });
   }
 
   fetchResolvedDate(){
     const resolvedData = <{list: Categories}> this.route.snapshot.data;
     this.categories = resolvedData.list;
-    console.log(" this.categories");
-    console.log( this.categories);
   }
 }

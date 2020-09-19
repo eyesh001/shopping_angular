@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedUtil, ActionMode } from 'src/app/Shared/shared-util';
 import { Category } from '../../category.model';
 import { DataStoreService } from 'src/app/Shared/data-store.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { filter, tap, switchMap, map } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +18,8 @@ export class CategoryMngDetailComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private database: DataStoreService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
     this.initform();
    }
 
@@ -28,8 +29,16 @@ export class CategoryMngDetailComponent implements OnInit {
       name1: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z]*$')])],
       name2: ['', Validators.pattern('^[a-zA-Z]*$')],
       isUse: [true, Validators.required],
-      createdTime: [SharedUtil.getCurrentDateTime()],
-      updatedTime: [''],
+      Time: [SharedUtil.getCurrentDateTime()],
+    });
+  }
+
+  resetForm(cat: Category) {
+    this.categoryForm.reset({
+      no: { value: cat.no, disabled: true },
+      name: { value: cat.name, disabled: true },
+      isUse: { value: true, disabled: true },
+      Time: [SharedUtil.getCurrentDateTime()]
     });
   }
 
@@ -58,6 +67,7 @@ export class CategoryMngDetailComponent implements OnInit {
     // TODO: popup message
     return () => {
       console.log('success');
+      this.redirectToCategoryList();
     };
   }
 
@@ -68,16 +78,24 @@ export class CategoryMngDetailComponent implements OnInit {
     };
   }
 
+  private redirectToCategoryList() {
+    this.router.navigate(['category-manage']);
+  }
+
+  private _setActionMode(q) {
+    this.actionMode = q['action'];
+  }
+
   ngOnInit() {
     this.route.queryParams.pipe(
       filter(q => q['action'] !== undefined)
+      // MEMO: tap - 데이터 저장?
+    , tap(q => this._setActionMode(q))
     , switchMap(q => this.route.data)
     , filter((data: { category: Category }) => data.category !== null)
     , map((data: { category: Category }) => data.category)
     ).subscribe(cat =>
-      // console.log(cat)
-      this.categoryForm.patchValue(cat))
-      // TODO: what is 'read'
-      // this.actionMode === 'read' ? this.resetForm(cat) : this.categoryForm.patchValue(cat)
+      this.actionMode === 'read' ? this.resetForm(cat) : this.categoryForm.patchValue(cat)
+    );
   }
 }

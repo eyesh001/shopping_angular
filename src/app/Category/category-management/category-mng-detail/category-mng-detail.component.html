@@ -26,12 +26,12 @@
           <div class="col-12">
             <label class="mr-3">사용여부:</label>
             <label class="custom-control custom-radio">
-              <input type="radio" formControlName="isUse" class="custom-control-input" [value]="true">
+              <input type="radio" formControlName="isUse" [value]="true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">사용</span>
             </label>
             <label class="custom-control custom-radio">
-              <input type="radio" formControlName="isUse" class="custom-control-input" [value]="false">
+              <input type="radio" formControlName="isUse" [value]="false">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">사용 안 함</span>
             </label>
@@ -40,16 +40,8 @@
         <div class="row my-4">
           <div class="col-12">
             <div class="input-group">
-              <span class="input-group-addon">생성일</span>
-              <input type="text" class="form-control" formControlName="createdTime" readonly/>
-            </div>
-          </div>
-        </div>
-        <div class="row my-4" *ngIf="actionMode !== 'create'">
-          <div class="col-12">
-            <div class="input-group">
-              <span class="input-group-addon">수정일</span>
-              <input type="text" class="form-control" formControlName="updatedTime" readonly/>
+              <span class="input-group-addon">작성일</span>
+              <input type="text" class="form-control" formControlName="Time" readonly/>
             </div>
           </div>
         </div>

@@ -10,25 +10,17 @@ import { CategoryMngDetailService } from './Category/category-management/categor
 import { ProductMngDetailService } from './Product/product-management/product-mng-detail/product-mng-detail.service';
 import { ProductMngDetailComponent } from './Product/product-management/product-mng-detail/product-mng-detail.component';
 import { CategoryListResolverService } from './Category/category-management/category-list-resolver.service';
+import { ProductListResolverService } from './Product/product-management/product-list-resolver.service';
 
-// { path: 'product-list', children: [
-//   {
-//     path: '', pathMatch: 'full', component: ProductListsComponent
-//   },
-//   {
-//     path: 'manage', pathMatch: 'full', component: ProductManagementComponent
-//   }
-// ]
-// },
 const routes: Routes = [
   { path: 'product-list', pathMatch: 'full', component: ProductListsComponent},
   { path: 'product-manage', children: [
-    {path: '', pathMatch: 'full', component: ProductManagementComponent},
+    {path: '', pathMatch: 'full', resolve: { list: ProductListResolverService }, component: ProductManagementComponent},
     {path: 'detail/:no', resolve: { product: ProductMngDetailService }, component: ProductMngDetailComponent}
   ]
   },
   { path: 'category-manage', children: [
-    {path: '', pathMatch: 'full', resolve: { category: CategoryListResolverService }, component: CategoryManagementComponent},
+    {path: '', pathMatch: 'full', resolve: { list: CategoryListResolverService }, component: CategoryManagementComponent},
     {path: 'detail/:no', resolve: { category: CategoryMngDetailService }, component: CategoryMngDetailComponent}
   ]
   },

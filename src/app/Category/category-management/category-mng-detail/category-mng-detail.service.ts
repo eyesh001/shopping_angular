@@ -13,7 +13,6 @@ export class CategoryMngDetailService implements Resolve<Category>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (route.queryParams.action === 'create') { return null; }
-    // if (route.queryParams.action === 'edit') { return null; }
     // if (route.queryParams.action === 'delete') { return null; }
     return this.database
       .findObject$<Category>('category', route.params['no'])
