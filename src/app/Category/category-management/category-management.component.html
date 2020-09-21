@@ -1,20 +1,19 @@
 <button type="button" class="btn btn-outline-primary btn-sm" (click)="categoryChange('create')">카테고리 등록</button>
 
-<table class="table" width="600px"> 
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">카테고리1/th>
-            <th scope="col">카테고리2</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
+<ng-template
+*ngIf="categories.length > 0;then categoriesExist; else categoriesNotExist">
+</ng-template>
 
-    <ng-template
-    *ngIf="categories.length > 0;then categoriesExist; else categoriesNotExist">
-    </ng-template>
-    
-    <ng-template #categoriesExist>
+<ng-template #categoriesExist>
+    <table class="table" width="600px"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">카테고리1</th>
+                <th scope="col">카테고리2</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
         <tbody>
             <tr *ngFor="let category of categories">
                 <td>{{category.no}}
@@ -29,14 +28,11 @@
                 </td>
             </tr>
         </tbody>
-    </ng-template>
+    </table>
+</ng-template>
 
-    <ng-template #categoriesNotExist>
-        <tbody *ngIf="categories.length == 0">
-            <tr>
-                There is no data uploaded.
-            </tr>
-        </tbody>
-    </ng-template>
-  </table>
-  
+<ng-template #categoriesNotExist>
+    <p>
+        There is no data uploaded.
+    </p>
+</ng-template>

@@ -11,7 +11,7 @@ import { CAT_LIST_PAGE_SIZE } from '../category.tokens';
 export class CategoryListResolverService implements Resolve<any> {
 
   constructor( private database: DataStoreService,
-              @Inject(CAT_LIST_PAGE_SIZE) private pageSize: number) { }
+               @Inject(CAT_LIST_PAGE_SIZE) private pageSize: number) { }
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

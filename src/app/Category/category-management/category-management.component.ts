@@ -24,6 +24,7 @@ export class CategoryManagementComponent implements OnInit {
               }
 
   ngOnInit() {
+    // MEMO: 개수 count
     this.database.count('category').subscribe(cnt => this.totalItemCnt = cnt);
     this.fetchResolvedDate();
   }
@@ -33,7 +34,7 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   fetchResolvedDate(){
-    const resolvedData = <{list: Categories}> this.route.snapshot.data;
+    const resolvedData = this.route.snapshot.data as {list: Categories};
     this.categories = resolvedData.list;
   }
 }
